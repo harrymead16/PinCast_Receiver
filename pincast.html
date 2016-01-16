@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<!----------------------------------------HEAD---------------------------------------------------->
+
+	<head>
+
+		<!--Slick CSS-->
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+
+	  	<!--JQuery (More Scripts at Bottom)-->
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!--My CSS-->
+		<style type="text/css">
+
+	  		body {
+	    		overflow:hidden;
+	  		}
+
+      		.slide{
+	    		height:720px;
+	    		width:1280px;
+				text-align:center;
+	    		border:0px solid silver;
+	    		display: table-cell;
+	    		vertical-align:middle;
+	    		color:#a2ffa9;
+	    		background-color:#7c1f1f;
+				background-image: none;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
+	    		font-weight:bold;
+	    		font-family:Verdana, Geneva, sans-serif;
+	    		font-size:40px;
+			}
+
+			#text{
+				min-height: 720px;
+	    		width:1280px;
+				text-align:center;
+				color:#a2ffa9;
+				vertical-align:middle;
+				margin-top: 220px;
+
+			}
+
+			#buffering{
+				display: inline-block;
+				text-align: center;
+				visibility: hidden;
+			}
+
+			#instruction{
+				visibility: hidden;
+				font-size: 0.8em;
+			}
+
+		</style>
+
+		<title>PinCast</title>
+  	</head>
+
+	<!---------------------------------------------------- BODY ---------------------------------------------------->
+
+  	<body>
+
+		<!-- Structure -->
+
+		<div class = "slide_container">
+			<div id="slide_one" class="slide">
+				<div id="text">
+					<h1 id="app_name">PinCast</h1>
+					<p id="instruction">Ready to Cast</p>
+					<img id="buffering" src="buffering.GIF"/>
+				</div>
+
+			</div>
+			<div id="slide_two" class="slide"></div>
+		</div>
+
+		<!-- Scripts -->
+
+    	<script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+		<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    	<script type="text/javascript" src="pincast.js"></script>
+
+  	</body>
+
+</html>
