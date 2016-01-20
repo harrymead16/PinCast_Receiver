@@ -97,7 +97,17 @@ window.onload = function() {
 
     	console.log('Message [' + event.senderId + ']: ' + event.data);
 
-		processURLs(event.data);
+		if (isPinCastCommand(event.data)) {
+			processCommand(event.data);
+		}
+
+		else if (isURLBatch(event.data)){
+			processURLs(event.data);
+		}
+
+		else {
+			console.error("Can't read cast message");
+		}
 
     	// Tell all senders on the CastMessageBus about the message event
     	// - a message listener will be alerted in the sender app
@@ -111,10 +121,26 @@ window.onload = function() {
 
 	// Receive URL batch, and add them as individual strings to the queue
 
-	function processURLs(text) {
+	function isPinCastCommand(text){
+		var prefix = text.substr(0,4);
+		if  (prefix=="PCOM") return true;
+		else return false;
+	}
 
-		//TODO - test that text contains URLS
-		//handle other messages
+	function processCommand(text){
+		if (text=="PCOM WIPE"){
+			heap=[];
+			queue=[];
+		}
+	}
+
+	function isURLBatch(text){
+		var prefix = text.substr(0,4);
+		if  (prefix=="http") return true;
+		else return false;
+	}
+
+	function processURLs(text) {
 
 		var seperated_urls = text.split(',');
 
@@ -136,6 +162,8 @@ window.onload = function() {
 		window.castReceiverManager.setApplicationState("Showing slides");
 
 		document.getElementById("instruction").style.visibility="hidden";
+		document.getElementById("logo").style.display="none";
+
 		document.getElementById("buffering").style.visibility="visible";
 		document.getElementById("slide_one").style.backgroundColor="black";
 		document.getElementById("slide_two").style.backgroundColor="black";
@@ -174,6 +202,7 @@ window.onload = function() {
 			};
 
 		}else{
+
 			console.log("Have now shown all slides... repeating queue");
 
 			for(var individual_url of heap){
